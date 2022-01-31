@@ -1,13 +1,22 @@
 package covariance;
 
 public class Printer <T extends Animal>{
-	T thingToPrint;
+	T animal;
 	
-	public Printer(T thingToPring) {
-		this.thingToPrint = thingToPring;
+	public Printer(T animal) {
+		this.animal = animal;
 	}
 	
 	public void print() {
-		System.out.println(thingToPrint + " !!!!!");
+		System.out.println(animal + " !!!!!");
+	}
+	
+	// okay, let's do something more realistic
+	public String eat() {
+		return animal.eat();
+	}
+	
+	public String shoutName() {
+		return animal.shoutName();
 	}
 }

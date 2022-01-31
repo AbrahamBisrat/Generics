@@ -9,11 +9,11 @@ public class Animal {
 		age = a;
 	}
 	
-	public void shoutName() {
-		System.out.println(name + " ?!!!!!");
+	public String shoutName() {
+		return name + " ?!!!!!";
 	}
 	
-	public void eat() {
-		System.out.println("This is the Animal eating!");
+	public String eat() {
+		return "This is the Animal eating!";
 	}
 }

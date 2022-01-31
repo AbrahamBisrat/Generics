@@ -9,8 +9,8 @@ public class Dog extends Animal{
 		aggresiveness = aggsv;
 	}
 	
-	@Override public void shoutName() {
-		System.out.println("Woof Woof!!!");
+	@Override public String shoutName() {
+		return "Woofy Woof!!!";
 	}
 	
 	public String getAggresivenesss() {
@@ -18,7 +18,9 @@ public class Dog extends Animal{
 	}
 	
 	@Override public String toString() {
-		return "[Cat : " + name + "\t age : " + age 
-				+ "\tAggressiveness : " + aggresiveness + " ]";
+		return "[Cat : " + name 
+				+ "\t age : " + age 
+				+ "\tAggressiveness : " 
+				+ aggresiveness + " ]";
 	}
 }

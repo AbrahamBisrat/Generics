@@ -9,16 +9,18 @@ public class Cat extends Animal{
 		cuteness = ctns;
 	}
 	
-	@Override public void shoutName() {
-		System.out.println("Woof Woof!!!");
-	}
-	
 	public String getCuteness() {
 		return cuteness;
 	}
 	
+	@Override public String shoutName() {
+		return "Meaw Meaw !!!";
+	}
+	
 	@Override public String toString() {
-		return "[Cat : " + name + "\t age : " + age 
-				+ "\tCuteness : " + cuteness + " ]";
+		return "[Cat : " + name 
+				+ "\t age : " + age 
+				+ "\tCuteness : " 
+				+ cuteness + " ]";
 	}
 }
