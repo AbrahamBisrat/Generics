@@ -8,13 +8,46 @@ import java.util.stream.Collectors;
 public class Generics {
 	public static void main(String[] args) {
 		
-		//testCases();
+//		testCases();
 		
+//		pairGenericTest();
+		
+//		gangOfFourTests();		
+		
+		// <T extends Comparable<? super T>>
+		
+		PrinterX<Dog> doggy = new PrinterX<>(
+			new Dog("DogName", 1, "Very Aggressive")	
+		);
+		
+		doggy.print();
+		
+	}
+
+	private static void gangOfFourTests() {
+		GangOfFour<Dog, Dog, Cat, Cat> gangOfFour =
+				new GangOfFour<>(
+					new Dog("Mickey", 6, "Normal"),
+					new Dog("Charley", 5, "Aggressive"),
+					new Cat("Sissy", 1, "Normal"),
+					new Cat("Liroy", 2, "Bitchy")
+				);
+		
+		System.out.println(gangOfFour);
+	}
+
+	private static void pairGenericTest() {
 		PairGeneric<String, Integer> gp =
 				new PairGeneric<>("Abraham", 613787);
 		
-		System.out.println(gp);
+		System.out.println(gp + "\n");
 		
+		
+		PairGeneric<Dog, Cat> dogNcat =
+				new PairGeneric<>(
+						new Dog("Rocky", 4, "Playful"), 
+						new Cat("Sassy", 2, "Cuteness"));
+		System.out.println(dogNcat);
 	}
 
 	private static void testCases() {
@@ -52,11 +85,12 @@ public class Generics {
 					}
 				};
 				
-		//		Printer<Dog> dogPrinter = new Printer<>(jack);
-		//		Printer<Cat> catPrinter = new Printer<>(cuty);
+				Printer<Dog> dogPrinter = new Printer<>(jack);
+				Printer<Cat> catPrinter = new Printer<>(cuty);
 				
-		//		dogPrinter.print();
-		//		catPrinter.print();
+				System.out.println("\n\n here");
+				dogPrinter.print();
+				catPrinter.print();
 				
 				
 				Animal anCat = new Cat("Some cute name", 1, "Normal");

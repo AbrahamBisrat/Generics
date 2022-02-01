@@ -1,8 +1,8 @@
 package covariance;
 
 public class PairGeneric <T, U>{
-	T first;
-	U second;
+	private final T first;
+	private final U second;
 	
 	public PairGeneric(T first, U second) {
 		this.first = first;
@@ -18,13 +18,12 @@ public class PairGeneric <T, U>{
 	}
 	
 	@Override public String toString() {
-		return "Generic Pair [ *{First Element ->>>> "
-				+ "\ttype : " + first.getClass() 
-				+ "\tvalue : " + first + " }"
-				+ "......"
-				+ "\t*{Second Element ->>>> "
-				+ "\ttype : " + second.getClass().getName() 
-				+ "\tvalue : " + second + "} ]";
-				
+		return "Generic Pair [ ***{First Element -> "
+				+ "  type : " + first.getClass() 
+				+ "  value : " + first + " }"
+				+ " -->||<-- "
+				+ "  ***{Second Element -> "
+				+ "  type : " + second.getClass().getName() 
+				+ "  value : " + second + "} ]";
 	}
 }

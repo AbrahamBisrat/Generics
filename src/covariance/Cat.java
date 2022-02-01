@@ -19,8 +19,8 @@ public class Cat extends Animal{
 	
 	@Override public String toString() {
 		return "[Cat : " + name
-				+ "\t age : " + age
-				+ "\tCuteness : "
+				+ "  age : " + age
+				+ "  Cuteness : "
 				+ cuteness + " ]";
 	}
 }
