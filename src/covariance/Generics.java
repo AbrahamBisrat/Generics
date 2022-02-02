@@ -1,9 +1,10 @@
 package covariance;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Generics {
 	public static void main(String[] args) {
@@ -16,12 +17,45 @@ public class Generics {
 		
 		// <T extends Comparable<? super T>>
 		
+//		wildcardWithParentsTest();
+		
+//		assignmentTests();
+		
+//		streamReduceWithFlatMap();
+		
+		
+	}
+
+	private static void streamReduceWithFlatMap() {
+		List<String> list1 = Arrays.asList("hellow", "there");
+		List<String> list2 = Arrays.asList("good bye", "again");
+		List<List<String>> combList = new ArrayList<>();
+		combList.add(list1);
+		combList.add(list2);
+		
+		System.out.println(combList);
+		
+		System.out.println(
+			combList.stream()
+					.flatMap(x -> x.stream())
+					.reduce("output is : ", (output, each) -> output.concat(each).concat(" "))
+		);
+	}
+
+	private static void assignmentTests() {
+		List<Integer> ints = new ArrayList<>();
+		ints.add(1);
+		ints.add(2);
+		List<? extends Number> nums = ints;
+//		nums.add(3.14);
+	}
+
+	private static void wildcardWithParentsTest() {
 		PrinterX<Dog> doggy = new PrinterX<>(
-			new Dog("DogName", 1, "Very Aggressive")	
+			new Dog("DogName", 1, "Very Aggressive")
 		);
 		
 		doggy.print();
-		
 	}
 
 	private static void gangOfFourTests() {
