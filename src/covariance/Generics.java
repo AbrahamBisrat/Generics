@@ -2,46 +2,69 @@ package covariance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Generics {
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {	
 //		testCases();
-		
 //		pairGenericTest();
-		
-//		gangOfFourTests();		
-		
-		// <T extends Comparable<? super T>>
-		
+//		gangOfFourTests();
 //		wildcardWithParentsTest();
-		
 //		assignmentTests();
-		
 //		streamReduceWithFlatMap();
-		
-		
+		List<String> list = Arrays.asList("hellow", "there", "generics");
+//		reverseGeneric(list);
+		System.out.println("The Corazza way : " + reverseGen(list));
 	}
-
+	private static void reverseGeneric(List<?> list) {
+		List<Object> temp = new ArrayList<>(list);
+		for(int i = 0; i < list.size(); i++) {
+			list = listHelper(i, temp.get(list.size() -i -1), list);
+		}
+		System.out.println(list);
+	}
+	private static List<?> reverseGen(List<?> items){
+		return reverseForMe(items);
+	}
+	private static <T> List<T> reverseForMe(List<T> items){
+		List<T> temp = new ArrayList<>(items);
+		for(int i = 0; i < items.size(); i++)
+			items.set(i, temp.get(items.size() -i -1));
+		return items;
+	}
+	private static <T> List<T> listHelper(int index, Object value, List<T> list){		
+		list.set(index, (T) value);
+		return list;
+	}
 	private static void streamReduceWithFlatMap() {
 		List<String> list1 = Arrays.asList("hellow", "there");
 		List<String> list2 = Arrays.asList("good bye", "again");
 		List<List<String>> combList = new ArrayList<>();
 		combList.add(list1);
 		combList.add(list2);
-		
 		System.out.println(combList);
-		
-		System.out.println(
-			combList.stream()
-					.flatMap(x -> x.stream())
-					.reduce("output is : ", (output, each) -> output.concat(each).concat(" "))
-		);
+		String reducedString = combList.stream()
+				.flatMap(x -> x.stream())
+				.reduce("output is : ",
+						(output, each) -> output.concat(each).concat(" "));
+		String reduceRef = combList.stream()
+								   .flatMap(x -> x.stream())
+								   .reduce("output is : ", String::concat);
+		String reduceOnePar = combList.stream()
+									  .flatMap(x -> x.stream())
+									  .reduce("", String::concat);
+//		String reduceColl = combList.stream()
+//									.flatMap(x -> x.stream())
+//									.reduce("", );
+		System.out.println(reducedString);
+		System.out.println("With method reference : " + reduceRef);
+		System.out.println("With one parameter : " + reduceOnePar);
+//		System.out.println("With String join : " + reduceColl);
 	}
-
 	private static void assignmentTests() {
 		List<Integer> ints = new ArrayList<>();
 		ints.add(1);
@@ -49,7 +72,6 @@ public class Generics {
 		List<? extends Number> nums = ints;
 //		nums.add(3.14);
 	}
-
 	private static void wildcardWithParentsTest() {
 		PrinterX<Dog> doggy = new PrinterX<>(
 			new Dog("DogName", 1, "Very Aggressive")
@@ -57,7 +79,6 @@ public class Generics {
 		
 		doggy.print();
 	}
-
 	private static void gangOfFourTests() {
 		GangOfFour<Dog, Dog, Cat, Cat> gangOfFour =
 				new GangOfFour<>(
@@ -69,7 +90,6 @@ public class Generics {
 		
 		System.out.println(gangOfFour);
 	}
-
 	private static void pairGenericTest() {
 		PairGeneric<String, Integer> gp =
 				new PairGeneric<>("Abraham", 613787);
@@ -83,7 +103,6 @@ public class Generics {
 						new Cat("Sassy", 2, "Cuteness"));
 		System.out.println(dogNcat);
 	}
-
 	private static void testCases() {
 		//		List<Integer> ints = new ArrayList<>();
 		//		ints.add(1);
@@ -153,13 +172,10 @@ public class Generics {
 				Pair pair = new Pair("Me", "I");
 				System.out.println(pair);
 	}
-	
 	private static void printList(List<?> list) {
 		System.out.println(list);
 	}
-	
 	private static void printReversed(List<String> list) {
 //		List<String> newList = Collections.reverse(list);
-		
 	}
 }
